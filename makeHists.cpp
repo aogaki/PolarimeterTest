@@ -121,7 +121,7 @@ void makeHists(TString fileName = "wave0.root", Int_t shortGate = 20)
     auto long2 = wave2->GetLongCharge();
     auto short2 = wave2->GetShortCharge();
     auto ps2 = short2 / long2;
-    constexpr auto timeOffset2 = 10.14 + 1.04; // Check Aogaki
+    constexpr auto timeOffset2 = 10.14 + 1.04;  // Check Aogaki
     auto tof2 = wave2->GetTrgTime() - beamTrg + timeOffset2;
 
     // std::cout << ps1 << "\t" << ps2 << std::endl;
@@ -154,9 +154,8 @@ void makeHists(TString fileName = "wave0.root", Int_t shortGate = 20)
   HisTOF1->Draw("SAME");
 
   auto output = new TFile("hists.root", "RECREATE");
-  HisTimeShort1->Write("HisOut");
-  HisTimeShort2->Write("HisIn");
+  HisTimeShort1->Write("HistOut");
+  HisTimeShort2->Write("HistIn");
   output->Close();
   // delete output;
-
 }
