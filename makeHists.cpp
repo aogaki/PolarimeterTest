@@ -6,6 +6,7 @@
 #include <TH1.h>
 #include <TH2.h>
 #include <TTree.h>
+#include <TStyle.h>
 
 #include "TBeamSignal.cpp"
 #include "TBeamSignal.hpp"
@@ -82,7 +83,7 @@ void InitHists()
                            0., 60000., 100, 0., 1.);
 }
 
-void makeHists(TString fileName = "wave0.root", Int_t shortGate = 20)
+void makeHists(TString fileName = "Data/wave6.root", Int_t shortGate = 20)
 {
   InitHists();
 

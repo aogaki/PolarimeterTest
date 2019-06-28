@@ -4,6 +4,7 @@
 #include <TFile.h>
 #include <TH2.h>
 #include <TString.h>
+#include <TStyle.h>
 
 #include "TAsymmetry.cpp"
 #include "TAsymmetry.hpp"
@@ -13,6 +14,8 @@ TH2D *histOut;
 
 void test(TString fileName = "Data/hists_wave9.root")
 {
+   gStyle->SetOptStat(kFALSE);
+   
   auto file = new TFile(fileName, "READ");
 
   histIn = (TH2D *)file->Get("HistIn");
