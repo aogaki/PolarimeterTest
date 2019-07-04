@@ -23,7 +23,7 @@ PMPrimaryGeneratorAction::PMPrimaryGeneratorAction(G4double beamEne,
     : G4VUserPrimaryGeneratorAction(), fParticleGun(nullptr)
 {
   fUnpolarizedFlag = unpolarizedFlag;
-  fGammaEne = beamEne;
+  fGammaEne = beamEne * MeV;
   fGammaSigma = beamEne * 0.005 / (2 * sqrt(2 * log(2)));
 
   fParticleGun = new G4ParticleGun(1);
@@ -64,11 +64,10 @@ void PMPrimaryGeneratorAction::GenBeam()
 
 void PMPrimaryGeneratorAction::GeneratePrimaries(G4Event *event)
 {
-  auto beamR = 1. * sqrt(G4UniformRand());  // Uniform in 2cm dia
+  auto beamR = 1. * sqrt(G4UniformRand()) * cm;  // Uniform in 2cm dia
   auto posTheta = G4UniformRand() * CLHEP::pi2;
-  auto beamPos =
-      G4ThreeVector(beamR * cos(posTheta) * cm, beamR * sin(posTheta) * cm,
-                    G4UniformRand() * 3.7 - 3.7 / 2.0);
+  auto beamPos = G4ThreeVector(beamR * cos(posTheta), beamR * sin(posTheta),
+                               (G4UniformRand() * 3.7 - 3.7 / 2.0) * cm);
   // GenBeam();
   fAngDist->GetRandom2(fBeamTheta, fBeamPhi);
   fBeamEne = fKEneAng->Interpolate(fBeamTheta * 180 / CLHEP::pi,

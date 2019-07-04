@@ -78,8 +78,8 @@ int main(int argc, char **argv)
   //auto physicsList = new PMPhysicsList();
   auto physicsList = new QGSP_BERT_HP();
   G4NeutronTrackingCut *mycut = new G4NeutronTrackingCut();
-  // mycut->SetTimeLimit(60 * ns);
-  // mycut->SetKineticEnergyLimit(15 * keV);
+  mycut->SetTimeLimit(60 * ns);
+  mycut->SetKineticEnergyLimit(15 * keV);
   physicsList->RegisterPhysics(mycut);
   runManager->SetUserInitialization(physicsList);
 
